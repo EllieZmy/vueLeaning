@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue起步</title>
+    <!--加载vue的js文件-->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!--vue的dom部分-->
+    <!--
+        v-bind是vue的一个绑定事件，将这个元素节点的 title 属性和 Vue 实例的 message 属性绑定到一起；
+        用法：v-bind:property="data.key"/可以简写成:property="data.key";
+        例如：v-bind:class="className"/:class="className";
+        并且如果在console中修改className的值，被绑定的元素节点上的响应信息会随之修改；
+    -->
+    <div id="app" v-bind:class="className">
+        {{message}}
+    </div>
+    <script>
+//      vue的js绑定
+        var app = new Vue({
+            el:"#app",
+            data:{
+                message:"Hello world!",
+                className:"appFirst"
+            }
+        })
+    </script>
+</body>
+</html>
