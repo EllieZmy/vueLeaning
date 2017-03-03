@@ -9,21 +9,28 @@
 <body>
     <!--vue的dom部分-->
     <!--
-        v-bind是vue的一个绑定事件，将这个元素节点的 title 属性和 Vue 实例的 message 属性绑定到一起；
+        【v-bind】是vue的一个绑定事件，将这个元素节点的 title 属性和 Vue 实例的 message 属性绑定到一起；
         用法：v-bind:property="data.key"/可以简写成:property="data.key";
         例如：v-bind:class="className"/:class="className";
         并且如果在console中修改className的值，被绑定的元素节点上的响应信息会随之修改；
+
+        条件判断【v-if】,当里面的内容为true时，则显示这个元素，否则删除这个Dom节点；
+        对应的可以做数据的显示隐藏的还有【v-show】,v-show方法是控制节点的display属性来实现显示隐藏的效果；
     -->
-    <div id="app" v-bind:class="className">
-        {{message}}
-    </div>
+    <ul id="app" v-bind:class="className">
+        <li>{{message}}</li>
+        <li v-show="seen">v-show方法实现为true时显示的内容</li>
+        <li v-if="seen2">v-if方法实现为true时显示的内容</li>
+    </ul>
     <script>
 //      vue的js绑定
         var app = new Vue({
             el:"#app",
             data:{
                 message:"Hello world!",
-                className:"appFirst"
+                className:"appFirst",
+                seen:true,
+                seen2:false
             }
         })
     </script>
