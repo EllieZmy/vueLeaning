@@ -16,12 +16,34 @@
 
         条件判断【v-if】,当里面的内容为true时，则显示这个元素，否则删除这个Dom节点；
         对应的可以做数据的显示隐藏的还有【v-show】,v-show方法是控制节点的display属性来实现显示隐藏的效果；
+
+        循环展示【v-for】,用读取对象属性的方式去获取内容并做展示；
+
+        处理用户数据【v-on】，用来绑定用户事件；
+        用法：v-on:event="eventName"/可以简写成@event="eventName";
+        例如：v-on:click="reverseIt"/@click="reverseIt";
+        被绑定的事件被写在js的【methods】里；
+
     -->
-    <ul id="app" v-bind:class="className">
-        <li>{{message}}</li>
-        <li v-show="seen">v-show方法实现为true时显示的内容</li>
-        <li v-if="seen2">v-if方法实现为true时显示的内容</li>
-    </ul>
+    <div id="app">
+        <ul v-bind:class="className">
+            <li>
+                <input type="text" v-model="message">
+            </li>
+            <li>{{message}}</li>
+            <li>
+                <input type="button" v-on:click="reverseIt" value="点击倒叙排列">
+            </li>
+            <li v-show="seen">v-show方法实现为true时显示的内容</li>
+            <li v-if="seen2">v-if方法实现为true时显示的内容</li>
+        </ul>
+        <ol>
+            <li v-for = "todo in todos">
+                学习内容：{{todo.test}}<br/> 执行时间：{{todo.time}}
+            </li>
+        </ol>
+    </div>
+
     <script>
 //      vue的js绑定
         var app = new Vue({
@@ -30,7 +52,26 @@
                 message:"Hello world!",
                 className:"appFirst",
                 seen:true,
-                seen2:false
+                seen2:false,
+                todos:[
+                    {
+                        test:"learning Js",
+                        time:"9:00-12:00"
+                    },
+                    {
+                        test:"learning vue",
+                        time:"12:00-16:00"
+                    },
+                    {
+                        test:"learning something awesome",
+                        time:"18:00:20:00"
+                    }
+                ]
+            },
+            methods:{
+                reverseIt:function () {
+                    this.message = this.message.split('').reverse().join('')
+                }
             }
         })
     </script>
